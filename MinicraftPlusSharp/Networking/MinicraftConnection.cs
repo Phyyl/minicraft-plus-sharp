@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MinicraftPlusSharp.Network
+namespace MinicraftPlusSharp.Networking
 {
     public abstract class MinicraftConnection : JavaThread, MinicraftProtocol
     {
@@ -153,7 +153,7 @@ namespace MinicraftPlusSharp.Network
 
         // there are a couple methods that are identical in both a server thread, and the client, so I'll just put them here.
 
-        public void sendNotification(string note, int notetime)
+        public void sendNotification(string  note, int notetime)
         {
             sendData(InputType.NOTIFY, notetime + ";" + note);
         }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using static MinicraftPlusSharp.Network.InputType;
+using static MinicraftPlusSharp.Networking.InputType;
 
-namespace MinicraftPlusSharp.Network
+namespace MinicraftPlusSharp.Networking
 {
     public interface MinicraftProtocol
     {

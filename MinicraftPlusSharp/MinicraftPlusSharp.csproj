@@ -12,7 +12,6 @@
 	<ItemGroup>
 	  <Folder Include="SaveLoad\" />
 	  <Folder Include="Entities\" />
-	  <Folder Include="Items\" />
 	  <Folder Include="Levels\" />
 	</ItemGroup>
 
