@@ -117,7 +117,7 @@ namespace MinicraftPlusSharp.Networking
 
         protected abstract bool ParsePacket(InputType inType, string data);
 
-        protected void sendData(InputType inType, String data)
+        protected void sendData(InputType inType, string data)
         {
             if (socket == null)
             {

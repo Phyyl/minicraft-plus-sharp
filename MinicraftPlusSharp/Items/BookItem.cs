@@ -1,5 +1,8 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
 using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Levels;
 using MinicraftPlusSharp.Levels.Tiles;
 using System;
 using System.Collections.Generic;

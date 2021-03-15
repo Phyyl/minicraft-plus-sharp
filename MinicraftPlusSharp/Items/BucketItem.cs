@@ -1,4 +1,9 @@
-﻿using MinicraftPlusSharp.Java;
+﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
+using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Java;
+using MinicraftPlusSharp.Levels;
 using MinicraftPlusSharp.Levels.Tiles;
 using System;
 using System.Collections.Generic;
@@ -11,26 +16,18 @@ namespace MinicraftPlusSharp.Items
 {
     public class BucketItem : StackableItem
     {
-        public class Fill
+        public class Fill : JavaEnum<Fill>
         {
-            private static readonly List<Fill> all = new();
-            public static Fill[] All => all.ToArray();
-
-            public static readonly Fill Empty = new(Tiles.Get("hole"), 2);
-            public static readonly Fill Water = new(Tiles.Get("water"), 0);
-            public static readonly Fill Lava = new(Tiles.Get("lava"), 1);
+            public static readonly Fill Water = new(Tiles.Get("water"));
+            public static readonly Fill Lava = new(Tiles.Get("lava"));
+            public static readonly Fill Empty = new(Tiles.Get("hole"));
 
             public readonly Tile contained;
-            public readonly int offset;
-            public readonly string name;
 
-            private Fill(Tile contained, int offset, [CallerMemberName] string name = default)
+            private Fill(Tile contained, [CallerMemberName] string name = default)
+                : base(name)
             {
                 this.contained = contained;
-                this.offset = offset;
-                this.name = name;
-
-                all.Add(this);
             }
         }
 
@@ -67,12 +64,12 @@ namespace MinicraftPlusSharp.Items
         }
 
         private BucketItem(Fill fill, int count)
-            : base(fill.name + " Bucket", new Sprite(fill.offset, 6, 0), count)
+            : base(fill.Name + " Bucket", new Sprite(fill.Ordinal, 6, 0), count)
         {
             this.filling = fill;
         }
 
-        public bool interactOn(Tile tile, Level level, int xt, int yt, Player player, Direction attackDir)
+        public override bool InteractOn(Tile tile, Level level, int xt, int yt, Player player, Direction attackDir)
         {
             Fill fill = GetFilling(tile);
 
@@ -142,7 +139,7 @@ namespace MinicraftPlusSharp.Items
             return base.Equals(other) && filling == ((BucketItem)other).filling;
         }
 
-        public override int GetHashCode() { return base.GetHashCode() + filling.offset * 31; }
+        public override int GetHashCode() { return base.GetHashCode() + filling * 31; }
 
         public override BucketItem Clone()
         {

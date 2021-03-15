@@ -287,11 +287,11 @@ namespace MinicraftPlusSharp.Items
          */
         public void TryAdd(int chance, Item item, int num, bool allOrNothing)
         {
-            if (!allOrNothing || random.nextInt(chance) == 0)
+            if (!allOrNothing || random.NextInt(chance) == 0)
             {
                 for (int i = 0; i < num; i++)
                 {
-                    if (allOrNothing || random.nextInt(chance) == 0)
+                    if (allOrNothing || random.NextInt(chance) == 0)
                     {
                         Add(item.Clone());
                     }

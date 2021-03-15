@@ -1,6 +1,7 @@
 ﻿using MinicraftPlusSharp.Core;
 using MinicraftPlusSharp.Gfx;
 using MinicraftPlusSharp.Items;
+using MinicraftPlusSharp.Levels;
 using MinicraftPlusSharp.Levels.Tiles;
 using System;
 using System.Collections.Generic;
@@ -146,7 +147,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             inventory = new PlayerInventory();
 
             //if(previousInstance == null)
-            //	inventory.add(Items.arrowItem, acs);
+            //	inventory.Add(Items.arrowItem, acs);
 
             potioneffects = new();
             showpotioneffects = true;
@@ -566,7 +567,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
                 if (input.getKey("menu").clicked && activeItem != null)
                 {
-                    inventory.add(0, activeItem);
+                    inventory.Add(0, activeItem);
                     activeItem = null;
                 }
 
@@ -630,7 +631,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             if (!(activeItem is PowerGloveItem))
             { // if you are now holding something other than a power glove...
                 if (prevItem != null && !Game.IsMode("creative")) // and you had a previous item that we should care about...
-                    inventory.add(0, prevItem); // then add that previous item to your inventory so it isn't lost.
+                    inventory.Add(0, prevItem); // then add that previous item to your inventory so it isn't lost.
                                                 // if something other than a power glove is being held, but the previous item is null, then nothing happens; nothing added to inventory, and current item remains as the new one.
             }
             else
@@ -712,7 +713,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                 if (tool.type == ToolType.Bow && tool.dur > 0 && inventory.count(Items.arrowItem) > 0)
                 { // if the player is holding a bow, and has arrows...
                     if (!Game.IsMode("creative")) inventory.removeItem(Items.arrowItem);
-                    level.add(new Arrow(this, attackDir, tool.level));
+                    level.Add(new Arrow(this, attackDir, tool.level));
                     attackTime = 10;
                     if (!Game.IsMode("creative")) tool.dur--;
                     return; // we have attacked!
@@ -855,7 +856,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                         if (itemData.startsWith(";"))
                         {
                             // for secret messages :=)
-                            Game.notifications.add(itemData.Substring(1));
+                            Game.notifications.Add(itemData.Substring(1));
                         }
                         else
                         {
@@ -1091,16 +1092,16 @@ namespace MinicraftPlusSharp.Entities.Mobs
         /** What happens when the player interacts with a itemEntity */
         public void pickupItem(ItemEntity itemEntity)
         {
-            Sound.pickup.play();
-            itemEntity.remove();
-            addScore(1);
+            Sound.pickup.Play();
+            itemEntity.Remove();
+            AddScore(1);
             if (Game.IsMode("creative")) return; // we shall not bother the inventory on creative mode.
 
             if (itemEntity.item is StackableItem && ((StackableItem)itemEntity.item).stacksWith(activeItem)) // picked up item equals the one in your hand
                 ((StackableItem)activeItem).count += ((StackableItem)itemEntity.item).count;
 
             else
-                inventory.add(itemEntity.item); // add item to inventory
+                inventory.Add(itemEntity.item); // add item to inventory
         }
 
         // the player can swim.
@@ -1132,10 +1133,10 @@ namespace MinicraftPlusSharp.Entities.Mobs
             List<Point> spawnTilePositions = level.getMatchingTiles(Tiles.get("grass"));
 
             if (spawnTilePositions.Count == 0)
-                spawnTilePositions.addAll(level.getMatchingTiles((t, x, y)->t.maySpawn()));
+                spawnTilePositions.AddAll(level.getMatchingTiles((t, x, y)->t.maySpawn()));
 
             if (spawnTilePositions.Count == 0)
-                spawnTilePositions.addAll(level.getMatchingTiles((t, x, y)->t.mayPass(level, x, y, Player.this)));
+                spawnTilePositions.AddAll(level.getMatchingTiles((t, x, y)->t.mayPass(level, x, y, Player.this)));
 
             // there are no tiles in the entire map which the player is allowed to stand on. Not likely.
             if (spawnTilePositions.Count == 0)
@@ -1217,17 +1218,17 @@ namespace MinicraftPlusSharp.Entities.Mobs
             //make death chest
             DeathChest dc = new DeathChest(this);
 
-            if (activeItem != null) dc.getInventory().add(activeItem);
-            if (curArmor != null) dc.getInventory().add(curArmor);
+            if (activeItem != null) dc.getInventory().Add(activeItem);
+            if (curArmor != null) dc.getInventory().Add(curArmor);
 
             Sound.playerDeath.play();
 
             if (!Game.ISONLINE)
-                World.levels[Game.currentLevel].add(dc);
+                World.levels[Game.currentLevel].Add(dc);
             else if (Game.IsConnectedClient())
                 Game.client.sendPlayerDeath(this, dc);
 
-            super.die(); // calls the die() method in Mob.java
+            super.die(); // calls the die() method in Mob.cs
         }
 
         //@Override
@@ -1279,7 +1280,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                 // adds a text particle telling how much damage was done to the player, and the armor.
                 if (armorDam > 0)
                 {
-                    level.add(new TextParticle("" + damage, x, y, Color.GRAY));
+                    level.Add(new TextParticle("" + damage, x, y, Color.GRAY));
                     armor -= armorDam;
                     if (armor <= 0)
                     {
@@ -1293,7 +1294,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
             if (healthDam > 0 || !fullPlayer)
             {
-                level.add(new TextParticle("" + damage, x, y, Color.get(-1, 504)));
+                level.Add(new TextParticle("" + damage, x, y, Color.Get(-1, 504)));
                 if (fullPlayer) super.doHurt(healthDam, attackDir); // sets knockback, and takes away health.
             }
 

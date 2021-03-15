@@ -47,5 +47,8 @@ namespace MinicraftPlusSharp.Java
         public static bool IsDefined(string name) => valuesByName.ContainsKey(name);
         public static bool TryGetValue(int ordinal, out T value) => valuesByOrdinal.TryGetValue(ordinal, out value);
         public static bool TryGetValue(string name, out T value) => valuesByName.TryGetValue(name, out value);
+
+        public static implicit operator int(JavaEnum<T> value) => value.Ordinal;
+        public static implicit operator string(JavaEnum<T> value) => value.Name;
     }
 }

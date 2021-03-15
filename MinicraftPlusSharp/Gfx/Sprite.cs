@@ -35,17 +35,17 @@ namespace MinicraftPlusSharp.Gfx
 
         public static Sprite RandomDots(long seed, int offset)
         {
-            ran.setSeed(seed);
+            ran.SetSeed(seed);
             return ConnectorSprite.makeSprite(
                 2,
                 2,
-                ran.nextInt(4),
+                ran.NextInt(4),
                 1,
                 false,
-                (2 + ran.nextInt(4)) + offset * 32,
-                (2 + ran.nextInt(4)) + offset * 32,
-                (2 + ran.nextInt(4)) + offset * 32,
-                (2 + ran.nextInt(4)) + offset * 32);
+                (2 + ran.NextInt(4)) + offset * 32,
+                (2 + ran.NextInt(4)) + offset * 32,
+                (2 + ran.NextInt(4)) + offset * 32,
+                (2 + ran.NextInt(4)) + offset * 32);
         }
 
         protected Px[,] spritePixels;

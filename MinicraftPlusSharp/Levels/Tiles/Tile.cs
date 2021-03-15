@@ -1,4 +1,7 @@
-﻿using MinicraftPlusSharp.Gfx;
+﻿using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
+using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Items;
 using MinicraftPlusSharp.Java;
 using System;
 using System.Collections.Generic;
@@ -38,12 +41,12 @@ namespace MinicraftPlusSharp.Levels.Tiles
             csprite = null;
         }
 
-        protected Tile(String name, Sprite sprite)
+        protected Tile(string name, Sprite sprite)
         {
             this.name = name.ToUpper();
             this.sprite = sprite;
         }
-        protected Tile(String name, ConnectorSprite sprite)
+        protected Tile(string name, ConnectorSprite sprite)
         {
             this.name = name.ToUpper();
             csprite = sprite;
@@ -53,13 +56,13 @@ namespace MinicraftPlusSharp.Levels.Tiles
         /** This method is used by tiles to specify the default "data" they have in a level's data array.
             Used for starting health, color/type of tile, etc. */
         // at least, that was the idea at first...
-        public virtual int getDefaultData()
+        public virtual int GetDefaultData()
         {
             return 0;
         }
 
         /** Render method, used in sub-classes */
-        public virtual void render(Screen screen, Level level, int x, int y)
+        public virtual void Render(Screen screen, Level level, int x, int y)
         {
             if (sprite != null)
             {

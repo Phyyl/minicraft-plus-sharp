@@ -153,7 +153,7 @@ namespace MinicraftPlusSharp.Gfx
         }
 
         /** Sets the offset of the screen */
-        public void setOffset(int xOffset, int yOffset)
+        public void SetOffset(int xOffset, int yOffset)
         {
             // this is called in few places, one of which is level.renderBackground, right before all the tiles are rendered. The offset is determined by the Game class (this only place renderBackground is called), by using the screen's width and the player's position in the level.
             // in other words, the offset is a conversion factor from level coordinates to screen coordinates. It makes a certain coord in the level the upper left corner of the screen, when subtracted from the tile coord.
@@ -232,7 +232,7 @@ namespace MinicraftPlusSharp.Gfx
             }
         }
 
-        public void renderLight(int x, int y, int r)
+        public void RenderLight(int x, int y, int r)
         {
             //applies offsets:
             x -= xOffset;

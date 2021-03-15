@@ -276,7 +276,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
             return tiles[id] != null;
         }
 
-        public static string GetName(String descriptName)
+        public static string GetName(string descriptName)
         {
             if (!descriptName.Contains("_"))
             {

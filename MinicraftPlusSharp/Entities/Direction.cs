@@ -1,37 +1,34 @@
-﻿using System;
+﻿using MinicraftPlusSharp.Java;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MinicraftPlusSharp.Entities
 {
-    public class Direction
+    public class Direction : JavaEnum<Direction>
     {
-        private static readonly List<Direction> all = new();
+        public static readonly Direction NONE = new(0, 0);
+        public static readonly Direction DOWN = new(0, 1);
+        public static readonly Direction UP = new(0, -1);
+        public static readonly Direction LEFT = new(-1, 0);
+        public static readonly Direction RIGHT = new(1, 0);
 
-        public static Direction[] All => all.ToArray();
+        public readonly int x, y;
 
-        public static readonly Direction NONE = new(0, 0, 0);
-        public static readonly Direction DOWN = new(0, 1, 1);
-        public static readonly Direction UP = new(0, -1, 2);
-        public static readonly Direction LEFT = new(-1, 0, 3);
-        public static readonly Direction RIGHT = new(1, 0, 4);
-
-        public readonly int ordinal, x, y;
-
-        private Direction(int x, int y, int ordinal)
+        private Direction(int x, int y, [CallerMemberName] string name = default)
+            : base(default)
         {
             this.x = x;
             this.y = y;
-            this.ordinal = ordinal;
-            all.Add(this);
         }
 
         public int GetX() { return x; }
         public int GetY() { return y; }
 
-        public static Direction getDirection(int xd, int yd)
+        public static Direction GetDirection(int xd, int yd)
         {
             if (xd == 0 && yd == 0)
             {
@@ -63,14 +60,14 @@ namespace MinicraftPlusSharp.Entities
             }
         }
 
-        public static Direction getDirection(int dir)
+        public static Direction GetDirection(int dir)
         {
-            return all[dir + 1];
+            return All[dir + 1];
         }
 
-        public int getDir()
+        public int GetDir()
         {
-            return ordinal - 1;
+            return Ordinal - 1;
         }
     }
 }

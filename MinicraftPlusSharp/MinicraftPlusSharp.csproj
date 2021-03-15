@@ -12,12 +12,4 @@
 		</Content>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="SaveLoad\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
-	</ItemGroup>
-
 </Project>
