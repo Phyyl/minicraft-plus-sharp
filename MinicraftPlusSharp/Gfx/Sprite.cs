@@ -11,7 +11,7 @@ namespace MinicraftPlusSharp.Gfx
 {
     public class Sprite
     {
-        private static JavaRandom ran = new JavaRandom();
+        private static JavaRandom ran = new();
 
         public static Sprite MissingTexture(int w, int h)
         {
@@ -83,8 +83,12 @@ namespace MinicraftPlusSharp.Gfx
 
             spritePixels = new Px[sw, sh];
             for (int r = 0; r < sh; r++)
+            {
                 for (int c = 0; c < sw; c++)
+                {
                     spritePixels[c, r] = new Px(sx + (onepixel ? 0 : c), sy + (onepixel ? 0 : r), mirror, sheet);
+                }
+            }
         }
         public Sprite(int sx, int sy, int sw, int sh, int sheet, bool onepixel, int[][] mirrors)
         {
@@ -92,8 +96,12 @@ namespace MinicraftPlusSharp.Gfx
 
             spritePixels = new Px[sw, sh];
             for (int r = 0; r < sh; r++)
+            {
                 for (int c = 0; c < sw; c++)
+                {
                     spritePixels[c, r] = new Px(sx + (onepixel ? 0 : c), sy + (onepixel ? 0 : r), mirrors[r][c], sheet);
+                }
+            }
         }
 
         public Sprite(Px[,] pixels)
@@ -179,7 +187,7 @@ namespace MinicraftPlusSharp.Gfx
 
         public override string ToString()
         {
-            StringBuilder @out = new StringBuilder(GetType().Name + "; pixels:");
+            StringBuilder @out = new(GetType().Name + "; pixels:");
 
             for (int y = 0; y < spritePixels.GetLength(1); y++)
             {

@@ -1,4 +1,6 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Levels.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +13,16 @@ namespace MinicraftPlusSharp.Items
     {
         internal static Item[] GetAllInstances()
         {
-            List<Item> items = new List<Item>();
+            List<Item> items = new();
+
             items.Add(new BookItem("Book", new Sprite(0, 8, 0), null));
             items.Add(new BookItem("Antidious", new Sprite(1, 8, 0), BookData.antVenomBook, true));
+            
             return items.ToArray();
         }
 
         protected string book; // TODO this is not saved yet; it could be, for editable books.
         private readonly bool hasTitlePage;
-        private Sprite sprite;
 
         private BookItem(string title, Sprite sprite, string book)
             : this(title, sprite, book, false)

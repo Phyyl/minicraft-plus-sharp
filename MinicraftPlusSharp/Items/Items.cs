@@ -1,4 +1,5 @@
-﻿using MinicraftPlusSharp.Java;
+﻿using MinicraftPlusSharp.Items.New;
+using MinicraftPlusSharp.Java;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace MinicraftPlusSharp.Items
 {
     public static class Items
     {
-        private static List<Item> items = new List<Item>();
+        private static List<Item> items = new();
 
         private static void Add(Item i)
         {
@@ -100,7 +101,9 @@ namespace MinicraftPlusSharp.Items
             }
 
             if (name.Equals("UNKNOWN"))
+            {
                 return new UnknownItem("BLANK");
+            }
 
             Item i = null;
             foreach (var cur in items)

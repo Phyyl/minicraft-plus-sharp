@@ -44,7 +44,9 @@ namespace MinicraftPlusSharp.Java
                 long next = current * 181783497276652981L;
 
                 if (compareAndSet(ref uniquifier, current, next))
+                {
                     return next;
+                }
             }
         }
 
@@ -88,10 +90,14 @@ namespace MinicraftPlusSharp.Java
         public void nextBytes(byte[] bytes)
         {
             for (int i = 0, len = bytes.Length; i < len;)
+            {
                 for (int rnd = nextInt(),
                          n = Math.Min(len - i, sizeof(int));
                      n-- > 0; rnd >>= 8)
+                {
                     bytes[i++] = (byte)rnd;
+                }
+            }
         }
 
         public int nextInt()
@@ -102,10 +108,14 @@ namespace MinicraftPlusSharp.Java
         public int nextInt(int n)
         {
             if (n <= 0)
+            {
                 throw new ArgumentException("n must be positive");
+            }
 
             if ((n & -n) == n)  // i.e., n is a power of 2
+            {
                 return (int)((n * (long)next(31)) >> 31);
+            }
 
             int bits, val;
             do
@@ -122,7 +132,7 @@ namespace MinicraftPlusSharp.Java
             return ((long)(next(32)) << 32) + next(32);
         }
 
-        public bool nextBoolean()
+        public bool nextbool()
         {
             return next(1) != 0;
         }

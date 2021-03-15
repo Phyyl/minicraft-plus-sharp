@@ -1,4 +1,4 @@
-﻿using MinicraftPlusSharp.Network;
+﻿using MinicraftPlusSharp.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace MinicraftPlusSharp.Core
         {
             if (IsConnectedClient())
             {
-                client.EndConnection;
+                client.EndConnection();
             }
 
             if (IsValidServer())
@@ -57,8 +57,11 @@ namespace MinicraftPlusSharp.Core
             };
 
             Initializer.ParseArgs(args);
+        }
 
-            input
+        internal static bool IsMode(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

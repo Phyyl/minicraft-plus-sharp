@@ -1,4 +1,9 @@
-﻿using System;
+﻿using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
+using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Levels;
+using MinicraftPlusSharp.Levels.Tiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,7 +58,7 @@ namespace MinicraftPlusSharp.Items
             return obj is Item item && item.Equals(this);
         }
 
-        public bool Equals(Item item)
+        public virtual bool Equals(Item item)
         {
             return item is not null && item.GetType().Equals(GetType()) && item.name.Equals(name);
         }

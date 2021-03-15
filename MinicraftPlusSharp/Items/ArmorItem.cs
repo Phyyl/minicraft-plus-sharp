@@ -1,4 +1,9 @@
-﻿using System;
+﻿using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
+using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Levels;
+using MinicraftPlusSharp.Levels.Tiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +15,7 @@ namespace MinicraftPlusSharp.Items
     {
         internal new static Item[] GetAllInstances()
         {
-            List<Item> items = new List<Item>();
+            List<Item> items = new();
 
             items.Add(new ArmorItem("Leather Armor", new Sprite(0, 9, 0), .3f, 1));
             items.Add(new ArmorItem("Snake Armor", new Sprite(1, 9, 0), .4f, 2));
@@ -38,7 +43,7 @@ namespace MinicraftPlusSharp.Items
             staminaCost = 9;
         }
 
-        public override bool interactOn(Tile tile, Level level, int xt, int yt, Player player, Direction attackDir)
+        public override bool InteractOn(Tile tile, Level level, int xt, int yt, Player player, Direction attackDir)
         {
             bool success = false;
 

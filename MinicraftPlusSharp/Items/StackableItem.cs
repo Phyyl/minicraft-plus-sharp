@@ -1,4 +1,5 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Gfx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace MinicraftPlusSharp.Items
     {
         internal static Item[] GetAllInstances()
         {
-            List<Item> items = new List<Item>();
+            List<Item> items = new();
 
             items.Add(new StackableItem("Wood", new Sprite(1, 0, 0)));
             items.Add(new StackableItem("Stone", new Sprite(2, 0, 0)));
@@ -38,7 +39,7 @@ namespace MinicraftPlusSharp.Items
             return items.ToArray();
         }
 
-        protected int count;
+        public int count;
 
         protected StackableItem(string name, Sprite sprite)
             : base(name, sprite)

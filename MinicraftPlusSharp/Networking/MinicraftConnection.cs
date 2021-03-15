@@ -1,4 +1,5 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Items;
 using MinicraftPlusSharp.Java;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace MinicraftPlusSharp.Networking
                 Console.WriteLine("Starting " + this);
             }
 
-            StringBuilder currentData = new StringBuilder();
+            StringBuilder currentData = new();
 
             if (@in is null || @out is null)
             {
@@ -118,14 +119,16 @@ namespace MinicraftPlusSharp.Networking
 
         protected void sendData(InputType inType, String data)
         {
-            if (socket == null) return;
+            if (socket == null)
+            {
+                return;
+            }
 
             if (Game.packet_debug && Game.IsConnectedClient())
             {
                 Console.WriteLine("Sent:" + inType.ToString() + ", " + data);
             }
 
-            //CHECK: .ordinal is 0 based?
             char inTypeChar = (char)(inType + 1);
 
             if (data.Contains("\0"))
@@ -148,7 +151,7 @@ namespace MinicraftPlusSharp.Networking
                 chars[i] = (int)str[i];
             }
 
-            return string.Join("", chars);
+            return string.Join(", ", chars);
         }
 
         // there are a couple methods that are identical in both a server thread, and the client, so I'll just put them here.
@@ -160,7 +163,7 @@ namespace MinicraftPlusSharp.Networking
 
         public void sendPotionEffect(PotionType type, bool addEffect)
         {
-            sendData(InputType.POTION, addEffect + ";" + type.ordinal());
+            sendData(InputType.POTION, addEffect + ";" + type.ordinal);
         }
 
         public void EndConnection()
