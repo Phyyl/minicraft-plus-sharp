@@ -551,7 +551,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     if (Game.IsValidClient())
                         Game.client.dropItem(drop);
                     else
-                        level.dropItem(x, y, drop);
+                        level.DropItem(x, y, drop);
                 }
 
                 if ((activeItem == null || !activeItem.used_pending) && (input.getKey("attack").clicked) && stamina != 0 && onFallDelay <= 0)

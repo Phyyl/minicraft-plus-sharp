@@ -1,15 +1,13 @@
+using MinicraftPlusSharp.Java;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace MinicraftPlusSharp.Items
 {
-    public class ToolType
+    public class ToolType : JavaEnum<ToolType>
     {
-        private static readonly List<ToolType> all = new();
-
-        public static ToolType[] All => all.ToArray();
-
-        public static readonly ToolType Shovel = new(0, 24); // if there's a second number, it specifies durability.
+        // if there's a second number, it specifies durability.
+        public static readonly ToolType Shovel = new(0, 24); 
         public static readonly ToolType Hoe = new(1, 20);
         public static readonly ToolType Sword = new(2, 42);
         public static readonly ToolType Pickaxe = new(3, 28);
@@ -22,28 +20,23 @@ namespace MinicraftPlusSharp.Items
         public readonly int yPos; // Y position of origin
         public readonly int durability;
         public readonly bool noLevel;
-        public readonly string name;
 
         private ToolType(int xPos, int dur, [CallerMemberName] string name = default)
+            : base(name)
         {
             this.xPos = xPos;
             yPos = 13;
             durability = dur;
             noLevel = false;
-            this.name = name;
-
-            all.Add(this);
         }
 
         private ToolType(int xPos, int dur, bool noLevel, [CallerMemberName] string name = default)
+            : base(name)
         {
             yPos = 12;
             this.xPos = xPos;
             durability = dur;
             this.noLevel = noLevel;
-            this.name = name;
-
-            all.Add(this);
         }
     }
 }

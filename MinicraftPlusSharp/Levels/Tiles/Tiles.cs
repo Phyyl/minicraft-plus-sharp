@@ -13,7 +13,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
 
         private static List<Tile> tiles = new();
 
-        public static void initTileList()
+        public static void InitTileList()
         {
             if (Game.debug)
             {

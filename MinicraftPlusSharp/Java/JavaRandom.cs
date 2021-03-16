@@ -132,7 +132,7 @@ namespace MinicraftPlusSharp.Java
             return ((long)(Next(32)) << 32) + Next(32);
         }
 
-        public bool Nextbool()
+        public bool NextBool()
         {
             return Next(1) != 0;
         }
