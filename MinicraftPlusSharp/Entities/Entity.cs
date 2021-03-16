@@ -90,7 +90,7 @@ namespace MinicraftPlusSharp.Entities
             return new Rectangle(x, y, xr * 2, yr * 2, Rectangle.CENTER_DIMS);
         }
         /** returns true if this entity is found in the rectangle specified by given two coordinates. */
-        public bool IsTouching(Rectangle area)
+        public virtual bool IsTouching(Rectangle area)
         {
             return area.IntersectsWith(GetBounds());
         }
@@ -100,19 +100,19 @@ namespace MinicraftPlusSharp.Entities
             return true;
         } // most entities are solid
         /** Determines if the given entity should prevent this entity from moving. */
-        public bool Blocks(Entity e)
+        public virtual bool Blocks(Entity e)
         {
             return IsSolid() && e.IsSolid();
         }
 
-        public bool CanSwim() { return false; } // Determines if the entity can swim (extended in sub-classes)
-        public bool CanWool() { return false; } // This, strangely enough, determines if the entity can walk on wool; among some other things..?
+        public virtual bool CanSwim() { return false; } // Determines if the entity can swim (extended in sub-classes)
+        public virtual bool CanWool() { return false; } // This, strangely enough, determines if the entity can walk on wool; among some other things..?
 
-        public int GetLightRadius() { return 0; } // used for lanterns... and player? that might be about it, though, so idk if I want to put it here.
+        public virtual int GetLightRadius() { return 0; } // used for lanterns... and player? that might be about it, though, so idk if I want to put it here.
 
 
         /** if this entity is touched by another entity (extended by sub-classes) */
-        protected void TouchedBy(Entity entity) { }
+        protected virtual void TouchedBy(Entity entity) { }
 
         /**
          * Interacts with the entity this method is called on
@@ -259,7 +259,7 @@ namespace MinicraftPlusSharp.Entities
         }
 
         /** This exists as a way to signify that the entity has been removed through player action and/or world action; basically, it's actually gone, not just removed from a level because it's out of range or something. Calls to this method are used to, say, drop items. */
-        public void Die()
+        public virtual void Die()
         {
             Remove();
         }

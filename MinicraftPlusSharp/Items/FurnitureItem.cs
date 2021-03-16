@@ -1,5 +1,9 @@
 using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Furniture;
+using MinicraftPlusSharp.Entities.Mobs;
 using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Levels;
 using MinicraftPlusSharp.Levels.Tiles;
 using System;
 using System.Collections.Generic;
@@ -54,7 +58,7 @@ namespace MinicraftPlusSharp.Items
         }
 
         public FurnitureItem(Furniture furniture)
-            : base(furniture.name, new Sprite(GetSpritePos(furniture.sprite.getPos()), 0))
+            : base(furniture.name, new Sprite(GetSpritePos(furniture.sprite.GetPos()), 0))
         {
             this.furniture = furniture; // Assigns the furniture to the item
             placed = false;
@@ -76,14 +80,21 @@ namespace MinicraftPlusSharp.Items
                 // Placed furniture's X and Y positions
                 furniture.x = xt * 16 + 8;
                 furniture.y = yt * 16 + 8;
+
                 level.Add(furniture); // adds the furniture to the world
+
                 if (Game.IsMode("creative"))
-                    furniture = furniture.clone();
+                {
+                    furniture = furniture.Clone();
+                }
                 else
+                {
                     placed = true; // the value becomes true, which removes it from the player's active item
+                }
 
                 return true;
             }
+
             return false;
         }
 
@@ -94,7 +105,7 @@ namespace MinicraftPlusSharp.Items
 
         public override FurnitureItem Clone()
         {
-            return new FurnitureItem(furniture.clone());
+            return new FurnitureItem(furniture.Clone());
         }
     }
 }

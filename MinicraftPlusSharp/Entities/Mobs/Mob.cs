@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Windows.Markup;
 using MinicraftPlusSharp.Gfx;
+using MinicraftPlusSharp.Entities.Furniture;
 
 namespace MinicraftPlusSharp.Entities.Mobs
 {
@@ -257,7 +258,10 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * @param mob The mob that hurt this mob
          * @param damage The amount of damage to hurt the mob with
          */
-        public void Hurt(Mob mob, int damage) { Hurt(mob, damage, GetAttackDir(mob, this)); }
+        public void Hurt(Mob mob, int damage)
+        {
+            Hurt(mob, damage, GetAttackDir(mob, this));
+        }
 
         /**
          * Do damage to the mob this method is called on.

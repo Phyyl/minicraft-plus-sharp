@@ -137,7 +137,7 @@ namespace MinicraftPlusSharp.SaveLoad
 
         public Version getWorldVersion() { return worldVer; }
 
-        public static string[] loadFile(string filename)
+        public static string[] LoadFile(string filename)
         {
             try
             {

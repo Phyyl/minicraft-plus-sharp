@@ -1,4 +1,5 @@
-﻿using MinicraftPlusSharp.Networking;
+﻿using MinicraftPlusSharp.Levels;
+using MinicraftPlusSharp.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace MinicraftPlusSharp.Core
         public static MinicraftServer server = null;
 
         public static bool IsValidServer() => ISONLINE && ISHOST && server is not null;
-        public static HasConnectedClients() => IsValidServer() && server.HasClients();
+        public static bool HasConnectedClients() => IsValidServer() && server.HasClients();
 
         public static Level[] levels = new Level[6];
         public static int currentLevel = 3;
@@ -57,11 +58,6 @@ namespace MinicraftPlusSharp.Core
             };
 
             Initializer.ParseArgs(args);
-        }
-
-        internal static bool IsMode(string v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1303,7 +1303,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
         }
 
         //@Override
-        public void remove()
+        public void Remove()
         {
             if (Game.debug)
             {
