@@ -23,7 +23,7 @@ namespace MinicraftPlusSharp.Entities.Furniture
         private Timer explodeTimer;
         private Level levelSave;
 
-        private String[] explosionBlacklist = new String[] { "hard rock", "obsidian wall" };
+        private string[] explosionBlacklist = new string[] { "hard rock", "obsidian wall" };
 
         /**
          * Creates a new tnt furniture.

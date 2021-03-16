@@ -98,10 +98,10 @@ namespace MinicraftPlusSharp.Entities.Mobs
         private Inventory inventory;
 
         public Item activeItem;
-        Item attackItem; // attackItem is useful again b/c of the power glove.
+        public Item attackItem; // attackItem is useful again b/c of the power glove.
         private Item prevItem; // holds the item held before using the POW glove.
 
-        int attackTime;
+        public int attackTime;
         public Direction attackDir;
 
         private int onStairDelay; // the delay before changing levels.

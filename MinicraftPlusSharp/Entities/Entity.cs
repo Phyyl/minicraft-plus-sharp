@@ -511,7 +511,7 @@ namespace MinicraftPlusSharp.Entities
             return GetType().Name + GetDataPrints();
         }
 
-        protected List<string> GetDataPrints()
+        protected virtual List<string> GetDataPrints()
         {
             List<string> prints = new();
             prints.Add("eid=" + eid);

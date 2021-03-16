@@ -189,7 +189,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             int textcol = Color.Get(1, 0, 204, 0);
             int textcol2 = Color.Get(1, 0, 51, 0);
             int percent = health / (maxHealth / 100);
-            String h = percent + "%";
+            string h = percent + "%";
 
             if (percent < 1)
             {

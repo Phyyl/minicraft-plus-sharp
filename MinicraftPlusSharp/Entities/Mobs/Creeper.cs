@@ -230,13 +230,13 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
         protected override string GetUpdateString()
         {
-            String updates = base.GetUpdateString() + ";";
+            string updates = base.GetUpdateString() + ";";
             updates += "fuseTime," + fuseTime + ";fuseLit," + fuseLit;
 
             return updates;
         }
 
-        protected override bool UpdateField(String field, String val)
+        protected override bool UpdateField(string field, string val)
         {
             if (base.UpdateField(field, val))
             {
