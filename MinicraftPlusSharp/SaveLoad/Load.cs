@@ -503,7 +503,7 @@ public void loadPlayer(Player player, List<string> origData)
     Game.currentLevel = Integer.parseInt(data.remove(0));
     Level level = World.levels[Game.currentLevel];
     if (!player.isRemoved()) player.remove(); // removes the user player from the level, in case they would be added twice.
-    if (!Game.isValidServer() || player != Game.player)
+    if (!Game.IsValidServer() || player != Game.player)
     {
         if (level != null)
             level.add(player);
@@ -671,7 +671,7 @@ for (int i = 0; i < World.levels.length; i++)
 
     string entityName = entityData.substring(0, entityData.indexOf("[")); // this gets the text before "[", which is the entity name.
 
-    if (entityName.equals("Player") && Game.debug && Game.isValidClient())
+    if (entityName.equals("Player") && Game.debug && Game.IsValidClient())
         System.out.println("CLIENT WARNING: Loading regular player: " + entityData);
 
     int x = Integer.parseInt(info.get(0));
@@ -694,7 +694,7 @@ for (int i = 0; i < World.levels.length; i++)
             return null;
         }
 
-        if (Game.isValidClient())
+        if (Game.IsValidClient())
         {
             if (eid == Game.player.eid)
                 return Game.player; // don't reload the main player via an entity addition, though do add it to the level (will be done elsewhere)
@@ -889,7 +889,7 @@ if (World.levels[curLevel] != null)
     if (Game.debug && newEntity instanceof RemotePlayer)
 				World.levels[curLevel].printEntityStatus("Loaded ", newEntity, "mob.RemotePlayer");
 }
-else if (newEntity instanceof RemotePlayer && Game.isValidClient())
+else if (newEntity instanceof RemotePlayer && Game.IsValidClient())
 			System.out.println("CLIENT: Remote player not added because on null level");
 
 return newEntity;

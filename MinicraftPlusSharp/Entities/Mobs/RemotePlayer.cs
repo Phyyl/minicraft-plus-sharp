@@ -81,7 +81,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
         {
             base.ResetMultiplier();
 
-            if (Game.IsMode("score") && Game.isValidServer())
+            if (Game.IsMode("score") && Game.IsValidServer())
             {
                 Game.server.GetAssociatedThread(this).sendEntityUpdate(this, "mult," + GetMultiplier());
             }
@@ -91,7 +91,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
         {
             base.AddMultiplier(value);
 
-            if (Game.IsMode("score") && Game.isValidServer())
+            if (Game.IsMode("score") && Game.IsValidServer())
             {
                 Game.server.GetAssociatedThread(this).sendEntityUpdate(this, "mult," + GetMultiplier());
             }
@@ -101,7 +101,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
         {
             base.AddScore(points);
 
-            if (Game.IsMode("score") && Game.isValidServer())
+            if (Game.IsMode("score") && Game.IsValidServer())
             {
                 Game.server.GetAssociatedThread(this).sendEntityUpdate(this, "score," + GetScore());
             }
@@ -137,7 +137,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
         public override void Die()
         {
-            if (Game.isValidServer())
+            if (Game.IsValidServer())
             {
                 Game.server.GetAssociatedThread(this).SendPlayerHurt(eid, health, Direction.NONE);
             }
