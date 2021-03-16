@@ -1146,7 +1146,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     screen.Render(xo + 8, yo - 4, 3 + 2 * 32, 1, 3); //render right half-slash (mirror of left).
                     if (attackItem != null && !(attackItem is PowerGloveItem))
                     { // if the player had an item when they last attacked...
-                        attackItem.sprite.render(screen, xo + 4, yo - 4, 1); // then render the icon of the item, mirrored
+                        attackItem.sprite.Render(screen, xo + 4, yo - 4, 1); // then render the icon of the item, mirrored
                     }
                 }
 
@@ -1157,7 +1157,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
                     if (attackItem != null && !(attackItem is PowerGloveItem))
                     {
-                        attackItem.sprite.render(screen, xo - 4, yo + 4, 1);
+                        attackItem.sprite.Render(screen, xo - 4, yo + 4, 1);
                     }
                 }
 
@@ -1168,7 +1168,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
                     if (attackItem != null && !(attackItem is PowerGloveItem))
                     {
-                        attackItem.sprite.render(screen, xo + 8 + 4, yo + 4);
+                        attackItem.sprite.Render(screen, xo + 8 + 4, yo + 4);
                     }
                 }
 
@@ -1179,7 +1179,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
                     if (attackItem != null && !(attackItem is PowerGloveItem))
                     {
-                        attackItem.sprite.render(screen, xo + 4, yo + 8 + 4);
+                        attackItem.sprite.Render(screen, xo + 4, yo + 8 + 4);
                     }
                 }
             }

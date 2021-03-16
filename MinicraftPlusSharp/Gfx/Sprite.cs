@@ -1,11 +1,11 @@
 ﻿using MinicraftPlusSharp.Java;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace MinicraftPlusSharp.Gfx
 {
@@ -50,7 +50,7 @@ namespace MinicraftPlusSharp.Gfx
 
         protected Px[,] spritePixels;
         public int color = -1;
-        protected Rectangle sheetLoc;
+        protected System.Drawing.Rectangle sheetLoc;
 
         public Sprite(int pos, int sheet)
             : this(pos % 32, pos / 32, 1, 1, sheet)
@@ -79,7 +79,7 @@ namespace MinicraftPlusSharp.Gfx
 
         public Sprite(int sx, int sy, int sw, int sh, int sheet, int mirror, bool onepixel)
         {
-            sheetLoc = new Rectangle(sx, sy, sw, sh);
+            sheetLoc = new System.Drawing.Rectangle(sx, sy, sw, sh);
 
             spritePixels = new Px[sw, sh];
             for (int r = 0; r < sh; r++)
@@ -90,16 +90,16 @@ namespace MinicraftPlusSharp.Gfx
                 }
             }
         }
-        public Sprite(int sx, int sy, int sw, int sh, int sheet, bool onepixel, int[][] mirrors)
+        public Sprite(int sx, int sy, int sw, int sh, int sheet, bool onepixel, int[,] mirrors)
         {
-            sheetLoc = new Rectangle(sx, sy, sw, sh);
+            sheetLoc = new System.Drawing.Rectangle(sx, sy, sw, sh);
 
             spritePixels = new Px[sw, sh];
             for (int r = 0; r < sh; r++)
             {
                 for (int c = 0; c < sw; c++)
                 {
-                    spritePixels[c, r] = new Px(sx + (onepixel ? 0 : c), sy + (onepixel ? 0 : r), mirrors[r][c], sheet);
+                    spritePixels[c, r] = new Px(sx + (onepixel ? 0 : c), sy + (onepixel ? 0 : r), mirrors[c, r], sheet);
                 }
             }
         }
@@ -109,80 +109,72 @@ namespace MinicraftPlusSharp.Gfx
             spritePixels = pixels;
         }
 
-
-
-
-
-
-
-
-
         public int GetPos()
         {
             return sheetLoc.X + sheetLoc.Y * 32;
         }
 
-        public Size GetSize()
+        public System.Drawing.Size GetSize()
         {
             return sheetLoc.Size;
         }
 
-        public void render(Screen screen, int x, int y)
+        public void Render(Screen screen, int x, int y)
         {
             // here, x and y are screen coordinates.
             for (int row = 0; row < spritePixels.GetLength(1); row++)
             { // loop down through each row
-                renderRow(row, screen, x, y + row * 8);
+                RenderRow(row, screen, x, y + row * 8);
             }
         }
-        public void render(Screen screen, int x, int y, int mirror)
+        public void Render(Screen screen, int x, int y, int mirror)
         {
             for (int row = 0; row < spritePixels.GetLength(1); row++)
             {
-                renderRow(row, screen, x, y + row * 8, mirror);
+                RenderRow(row, screen, x, y + row * 8, mirror);
             }
         }
-        public void render(Screen screen, int x, int y, int mirror, int whiteTint)
+        public void Render(Screen screen, int x, int y, int mirror, int whiteTint)
         {
             for (int row = 0; row < spritePixels.GetLength(1); row++)
             {
-                renderRow(row, screen, x, y + row * 8, mirror, whiteTint);
+                RenderRow(row, screen, x, y + row * 8, mirror, whiteTint);
             }
         }
 
-        public void renderRow(int r, Screen screen, int x, int y)
+        public void RenderRow(int r, Screen screen, int x, int y)
         {
             for (int c = 0; c < spritePixels.GetLength(0); c++)
             { // loop across through each column
-                screen.render(x + c * 8, y, spritePixels[c, r].sheetPos, spritePixels[c, r].mirror, spritePixels[c, r].sheetNum, this.color); // render the sprite pixel.
+                screen.Render(x + c * 8, y, spritePixels[c, r].sheetPos, spritePixels[c, r].mirror, spritePixels[c, r].sheetNum, this.color); // render the sprite pixel.
             }
         }
-        public void renderRow(int r, Screen screen, int x, int y, int mirror)
+        public void RenderRow(int r, Screen screen, int x, int y, int mirror)
         {
             for (int c = 0; c < spritePixels.GetLength(0); c++)
             { // loop across through each column
-                screen.render(x + c * 8, y, spritePixels[c, r].sheetPos, mirror, spritePixels[c, r].sheetNum, this.color); // render the sprite pixel.
+                screen.Render(x + c * 8, y, spritePixels[c, r].sheetPos, mirror, spritePixels[c, r].sheetNum, this.color); // render the sprite pixel.
             }
         }
-        public void renderRow(int r, Screen screen, int x, int y, int mirror, int whiteTint)
+        public void RenderRow(int r, Screen screen, int x, int y, int mirror, int whiteTint)
         {
             for (int c = 0; c < spritePixels.GetLength(0); c++)
             {
-                screen.render(x + c * 8, y, spritePixels[c, r].sheetPos, (mirror != -1 ? mirror : spritePixels[c, r].mirror), spritePixels[c, r].sheetNum, whiteTint);
+                screen.Render(x + c * 8, y, spritePixels[c, r].sheetPos, (mirror != -1 ? mirror : spritePixels[c, r].mirror), spritePixels[c, r].sheetNum, whiteTint);
             }
         }
 
-        protected void renderPixel(int c, int r, Screen screen, int x, int y)
+        protected void RenderPixel(int c, int r, Screen screen, int x, int y)
         {
-            renderPixel(c, r, screen, x, y, spritePixels[c, r].mirror);
+            RenderPixel(c, r, screen, x, y, spritePixels[c, r].mirror);
         }
-        protected void renderPixel(int c, int r, Screen screen, int x, int y, int mirror)
+        protected void RenderPixel(int c, int r, Screen screen, int x, int y, int mirror)
         {
-            renderPixel(c, r, screen, x, y, mirror, this.color);
+            RenderPixel(c, r, screen, x, y, mirror, this.color);
         }
-        protected void renderPixel(int c, int r, Screen screen, int x, int y, int mirror, int whiteTint)
+        protected void RenderPixel(int c, int r, Screen screen, int x, int y, int mirror, int whiteTint)
         {
-            screen.render(x, y, spritePixels[c, r].sheetPos, mirror, spritePixels[c, r].sheetNum, whiteTint); // render the sprite pixel.
+            screen.Render(x, y, spritePixels[c, r].sheetPos, mirror, spritePixels[c, r].sheetNum, whiteTint); // render the sprite pixel.
         }
 
         public override string ToString()

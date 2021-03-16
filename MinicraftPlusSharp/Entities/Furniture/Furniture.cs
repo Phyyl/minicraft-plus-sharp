@@ -80,7 +80,7 @@ namespace MinicraftPlusSharp.Entities.Furniture
         /** Draws the furniture on the screen. */
         public override void Render(Screen screen)
         {
-            sprite.render(screen, x - 8, y - 8);
+            sprite.Render(screen, x - 8, y - 8);
         }
 
         /** Called when the player presses the MENU key in front of this. */

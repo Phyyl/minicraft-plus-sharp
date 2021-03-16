@@ -66,7 +66,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
         {
             if (sprite != null)
             {
-                sprite.render(screen, x << 4, y << 4);
+                sprite.Render(screen, x << 4, y << 4);
             }
 
             if (csprite != null)
