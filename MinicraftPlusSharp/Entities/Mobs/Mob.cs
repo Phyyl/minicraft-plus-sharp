@@ -293,7 +293,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * @param damage The amount of damage to hurt the mob with
          * @param attackDir The direction this mob was attacked from
          */
-        protected void DoHurt(int damage, Direction attackDir)
+        protected virtual void DoHurt(int damage, Direction attackDir)
         {
             if (IsRemoved() || hurtTime > 0)
             {

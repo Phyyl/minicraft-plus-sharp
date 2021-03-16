@@ -12,7 +12,7 @@ namespace MinicraftPlusSharp.Items
 {
     public class FurnitureItem : Item
     {
-        protected static Item[] GetAllInstances()
+        internal static Item[] GetAllInstances()
         {
             List<Item> items = new();
 
@@ -30,13 +30,15 @@ namespace MinicraftPlusSharp.Items
 
             items.Add(new FurnitureItem(new Chest()));
             items.Add(new FurnitureItem(new DungeonChest(false, true)));
+
             // add the various types of crafting furniture
-            foreach (Crafter.Type type in Enum.GetValues<Crafter.Type>())
+            foreach (Crafter.Type type in Crafter.Type.All)
             {
                 items.Add(new FurnitureItem(new Crafter(type)));
             }
+
             // add the various lanterns
-            foreach (Lantern.Type type in Enum.GetValues<Lantern.Type>())
+            foreach (Lantern.Type type in Lantern.Type.All)
             {
                 items.Add(new FurnitureItem(new Lantern(type)));
             }

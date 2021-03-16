@@ -47,7 +47,7 @@ namespace MinicraftPlusSharp.Items
         {
             bool success = false;
 
-            if (player.curArmor is null && player.payStamina(staminaCost))
+            if (player.curArmor is null && player.PayStamina(staminaCost))
             {
                 player.curArmor = this; // set the current armor being worn to this.
                 player.armor = (int)(armor * Player.maxArmor); // armor is how many hits are left

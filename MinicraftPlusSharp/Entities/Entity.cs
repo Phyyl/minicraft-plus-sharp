@@ -265,7 +265,7 @@ namespace MinicraftPlusSharp.Entities
         }
 
         /** Removes the entity from the level. */
-        public void Remove()
+        public virtual void Remove()
         {
             if (removed && !(this is ItemEntity)) // apparently this happens fairly often with item entities.
             {

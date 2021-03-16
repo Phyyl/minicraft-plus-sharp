@@ -1,4 +1,6 @@
 using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Entities;
+using MinicraftPlusSharp.Entities.Mobs;
 using MinicraftPlusSharp.Gfx;
 using MinicraftPlusSharp.Java;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ namespace MinicraftPlusSharp.Items
 {
     public class ToolItem : Item
     {
-        protected static Item[] GetAllInstances()
+        internal static Item[] GetAllInstances()
         {
             List<Item> items = new();
 
@@ -39,7 +41,7 @@ namespace MinicraftPlusSharp.Items
 
         /** Tool Item, requires a tool type (ToolType.Sword, ToolType.Axe, ToolType.Hoe, etc) and a level (0 = wood, 2 = iron, 4 = gem, etc) */
         public ToolItem(ToolType type, int level)
-            : base(LEVEL_NAMES[level] + " " + type.name, new Sprite(type.xPos, type.yPos + level, 0))
+            : base(LEVEL_NAMES[level] + " " + type.Name, new Sprite(type.xPos, type.yPos + level, 0))
         {
             this.type = type;
             this.level = level;
@@ -48,7 +50,7 @@ namespace MinicraftPlusSharp.Items
         }
 
         public ToolItem(ToolType type)
-            : base(type.name, new Sprite(type.xPos, type.yPos, 0))
+            : base(type.Name, new Sprite(type.xPos, type.yPos, 0))
         {
             this.type = type;
             dur = type.durability;
@@ -142,7 +144,7 @@ namespace MinicraftPlusSharp.Items
 
         public override int GetHashCode()
         {
-            return type.name.GetHashCode() + level;
+            return type.Name.GetHashCode() + level;
         }
 
         public override ToolItem Clone()
