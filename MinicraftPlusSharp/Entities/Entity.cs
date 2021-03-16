@@ -92,7 +92,7 @@ namespace MinicraftPlusSharp.Entities
         /** returns true if this entity is found in the rectangle specified by given two coordinates. */
         public virtual bool IsTouching(Rectangle area)
         {
-            return area.IntersectsWith(GetBounds());
+            return area.Intersects(GetBounds());
         }
         /** returns if this entity stops other solid entities from moving. */
         public virtual bool IsSolid()
@@ -143,7 +143,7 @@ namespace MinicraftPlusSharp.Entities
             {
                 int xt = x >> 4; // the x tile coordinate that the entity is standing on.
                 int yt = y >> 4; // the y tile coordinate that the entity is standing on.
-                level.getTile(xt, yt).steppedOn(level, xt, yt, this); // Calls the steppedOn() method in a tile's class. (used for tiles like sand (footprints) or lava (burning))
+                level.GetTile(xt, yt).SteppedOn(level, xt, yt, this); // Calls the steppedOn() method in a tile's class. (used for tiles like sand (footprints) or lava (burning))
             }
 
             return !stopped;
@@ -188,10 +188,10 @@ namespace MinicraftPlusSharp.Entities
                     // tile positions that make it here are the ones that the entity will be in, but are not in now.
                     if (interact)
                     {
-                        level.GetTile(xt, yt).bumpedInto(level, xt, yt, this); // Used in tiles like cactus
+                        level.GetTile(xt, yt).BumpedInto(level, xt, yt, this); // Used in tiles like cactus
                     }
 
-                    if (!level.GetTile(xt, yt).mayPass(level, xt, yt, this))
+                    if (!level.GetTile(xt, yt).MayPass(level, xt, yt, this))
                     { // if the entity can't pass this tile...
                       //blocked = true; // then the entity is blocked
                         return false;
