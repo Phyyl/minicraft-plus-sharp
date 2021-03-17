@@ -14,5 +14,17 @@ namespace MinicraftPlusSharp.Java
         {
             Console.Error.WriteLine(ex.StackTrace);
         }
+
+        public static string ReplaceFirst(this string str, string from, string to)
+        {
+            int pos = str.IndexOf(from);
+
+            if (pos < 0)
+            {
+                return str;
+            }
+
+            return str[0..pos] + to + str[(pos+from.Length)..];
+        }
     }
 }

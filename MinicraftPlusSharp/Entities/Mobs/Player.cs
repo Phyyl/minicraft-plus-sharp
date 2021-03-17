@@ -950,7 +950,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                         if (itemData.StartsWith(";"))
                         {
                             // for secret messages :=)
-                            Game.notifications.Add(itemData.Substring(1));
+                            Game.notifications.Add(itemData[1..]);
                         }
                         else
                         {

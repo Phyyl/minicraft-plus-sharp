@@ -211,7 +211,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
             if (name.StartsWith("TORCH"))
             {
                 isTorch = true;
-                name = name.Substring(6); // cuts off torch prefix.
+                name = name[6..]; // cuts off torch prefix.
             }
 
             if (name.Contains("_"))

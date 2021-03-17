@@ -58,7 +58,7 @@ namespace MinicraftPlusSharp.Entities.Furniture
                     else if (inventory.InvSize() == 0)
                     {
                         // adds the "fallback" items to ensure there's some stuff
-                        string[] fallbacks = line.Substring(1).Split(":");
+                        string[] fallbacks = line[1..].Split(":");
 
                         foreach (string item in fallbacks)
                         {

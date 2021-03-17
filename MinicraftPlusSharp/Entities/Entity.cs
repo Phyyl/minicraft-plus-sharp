@@ -383,7 +383,7 @@ namespace MinicraftPlusSharp.Entities
             foreach (string field in deltas.Split(";"))
             {
                 string fieldName = field.Substring(0, field.IndexOf(","));
-                string val = field.Substring(field.IndexOf(",") + 1);
+                string val = field[(field.IndexOf(",") + 1)..];
                 UpdateField(fieldName, val);
             }
 
@@ -495,7 +495,7 @@ namespace MinicraftPlusSharp.Entities
 
             curDeltas = deltas.ToString();
 
-            if (curDeltas.Length > 0) curDeltas = curDeltas.Substring(0, curDeltas.Length - 1); // cuts off extra ";"
+            if (curDeltas.Length > 0) curDeltas = curDeltas[0..^1]; // cuts off extra ";"
 
             return curDeltas;
         }

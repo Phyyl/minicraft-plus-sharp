@@ -788,7 +788,7 @@ namespace MinicraftPlusSharp.Levels
             }
 
             string name = tilewithdata.Substring(0, tilewithdata.IndexOf("_"));
-            int data = Tiles.Tiles.Get(name).GetData(tilewithdata.Substring(name.Length + 1));
+            int data = Tiles.Tiles.Get(name).GetData(tilewithdata[(name.Length + 1)..]);
 
             SetTile(x, y, Tiles.Tiles.Get(name), data);
         }

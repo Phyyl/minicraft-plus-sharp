@@ -63,7 +63,7 @@ namespace MinicraftPlusSharp.Items
                 hadUnderscore = true;
                 try
                 {
-                    data = int.Parse(name.Substring(name.IndexOf("_") + 1));
+                    data = int.Parse(name[(name.IndexOf("_") + 1)..]);
                 }
                 catch (Exception ex)
                 {
@@ -77,7 +77,7 @@ namespace MinicraftPlusSharp.Items
                 hadUnderscore = true;
                 try
                 {
-                    data = int.Parse(name.Substring(name.IndexOf(";") + 1));
+                    data = int.Parse(name[(name.IndexOf(";") + 1)..]);
                 }
                 catch (Exception ex)
                 {

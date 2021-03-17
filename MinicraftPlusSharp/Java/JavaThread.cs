@@ -12,11 +12,11 @@ namespace MinicraftPlusSharp.Java
     {
         private readonly Thread thread;
 
-        protected JavaThread(string name)
+        protected JavaThread(string name = default)
         {
             thread = new Thread(ThreadMain)
             {
-                Name = name,
+                Name = name ?? "JavaThread",
                 IsBackground = true
             };
         }
