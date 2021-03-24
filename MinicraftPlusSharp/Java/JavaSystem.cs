@@ -16,5 +16,12 @@ namespace MinicraftPlusSharp.Java
             nano *= 100L;
             return nano;
         }
+
+        public static long CurrentTimeMillis()
+        {
+            long nano = 10000L * Stopwatch.GetTimestamp();
+            nano /= TimeSpan.TicksPerMillisecond;
+            return nano;
+        }
     }
 }

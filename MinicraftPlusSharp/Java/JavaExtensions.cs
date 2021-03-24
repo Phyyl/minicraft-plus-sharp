@@ -24,7 +24,16 @@ namespace MinicraftPlusSharp.Java
                 return str;
             }
 
-            return str[0..pos] + to + str[(pos+from.Length)..];
+            return str[0..pos] + to + str[(pos + from.Length)..];
+        }
+
+        public static T RemoveAtGet<T>(this IList<T> list, int index)
+        {
+            T result = list[index];
+
+            list.RemoveAt(index);
+
+            return result;
         }
     }
 }

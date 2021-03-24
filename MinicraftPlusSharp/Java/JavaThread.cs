@@ -27,5 +27,10 @@ namespace MinicraftPlusSharp.Java
         {
             Console.WriteLine(new StackTrace().ToString());
         }
+
+        public void Start()
+        {
+            thread.Start();
+        }
     }
 }

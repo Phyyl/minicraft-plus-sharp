@@ -1,9 +1,12 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Core.IO;
 using MinicraftPlusSharp.Entities.Furniture;
+using MinicraftPlusSharp.Entities.Particle;
 using MinicraftPlusSharp.Gfx;
 using MinicraftPlusSharp.Items;
 using MinicraftPlusSharp.Levels;
 using MinicraftPlusSharp.Levels.Tiles;
+using MinicraftPlusSharp.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -320,7 +323,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                 cooldowninfo--;
             }
 
-            if (input.getKey("potionEffects").clicked && cooldowninfo == 0)
+            if (input.GetKey("potionEffects").clicked && cooldowninfo == 0)
             {
                 cooldowninfo = 10;
                 showpotioneffects = !showpotioneffects;
@@ -559,15 +562,15 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     }
                     else
                     {
-                        hurt(this, 1, Direction.NONE); // if no stamina, take damage.
+                        Hurt(this, 1, Direction.NONE); // if no stamina, take damage.
                     }
                 }
 
-                if (activeItem != null && (input.getKey("drop-one").clicked || input.getKey("drop-stack").clicked))
+                if (activeItem != null && (input.GetKey("drop-one").clicked || input.GetKey("drop-stack").clicked))
                 {
                     Item drop = activeItem.Clone();
 
-                    if (input.getKey("drop-one").clicked && drop is StackableItem && ((StackableItem)drop).count > 1)
+                    if (input.GetKey("drop-one").clicked && drop is StackableItem && ((StackableItem)drop).count > 1)
                     {
                         // drop one from stack
                         ((StackableItem)activeItem).count--;
@@ -588,7 +591,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     }
                 }
 
-                if ((activeItem == null || !activeItem.used_pending) && (input.getKey("attack").clicked) && stamina != 0 && onFallDelay <= 0)
+                if ((activeItem == null || !activeItem.used_pending) && (input.GetKey("attack").clicked) && stamina != 0 && onFallDelay <= 0)
                 { // this only allows attacks when such action is possible.
                     if (!potioneffects.ContainsKey(PotionType.Energy))
                     {
@@ -605,7 +608,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     }
                 }
 
-                if (input.getKey("menu").clicked && activeItem != null)
+                if (input.GetKey("menu").clicked && activeItem != null)
                 {
                     inventory.Add(0, activeItem);
                     activeItem = null;
@@ -613,27 +616,27 @@ namespace MinicraftPlusSharp.Entities.Mobs
 
                 if (Game.GetMenu() == null)
                 {
-                    if (input.getKey("menu").clicked && !use()) // !use() = no furniture in front of the player; this prevents player inventory from opening (will open furniture inventory instead)
+                    if (input.GetKey("menu").clicked && !Use()) // !use() = no furniture in front of the player; this prevents player inventory from opening (will open furniture inventory instead)
                     {
                         Game.SetMenu(new PlayerInvDisplay(this));
                     }
 
-                    if (input.getKey("pause").clicked)
+                    if (input.GetKey("pause").clicked)
                     {
                         Game.SetMenu(new PauseDisplay());
                     }
 
-                    if (input.getKey("craft").clicked && !use())
+                    if (input.GetKey("craft").clicked && !Use())
                     {
                         Game.SetMenu(new CraftingDisplay(Recipes.craftRecipes, "Crafting", this, true));
                     }
 
-                    if (input.getKey("info").clicked)
+                    if (input.GetKey("info").clicked)
                     {
                         Game.SetMenu(new InfoDisplay());
                     }
 
-                    if (input.getKey("quicksave").clicked && !Updater.saving && this is RemotePlayer && !Game.IsValidClient())
+                    if (input.GetKey("quicksave").clicked && !Updater.saving && this is RemotePlayer && !Game.IsValidClient())
                     {
                         Updater.saving = true;
                         LoadingDisplay.SetPercentage(0);
@@ -641,7 +644,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                     }
 
                     //debug feature:
-                    if (Game.debug && input.getKey("shift-p").clicked)
+                    if (Game.debug && input.GetKey("shift-p").clicked)
                     { // remove all potion effects
                         foreach (PotionType potionType in potioneffects.Keys)
                         {
@@ -654,7 +657,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                         }
                     }
 
-                    if (input.getKey("pickup").clicked && (activeItem == null || !activeItem.used_pending))
+                    if (input.GetKey("pickup").clicked && (activeItem == null || !activeItem.used_pending))
                     {
                         if (!(activeItem is PowerGloveItem))
                         { // if you are not already holding a power glove (aka in the middle of a separate interaction)...
@@ -742,7 +745,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             {
                 attackDir = dir; // make the attack direction equal the current direction
                 attackItem = activeItem; // make attackItem equal activeItem
-                                         //if (Game.debug) System.out.println(Network.onlinePrefix()+"player is using reflexive item: " + activeItem);
+                                         //if (Game.debug) Console.WriteLine(Network.onlinePrefix()+"player is using reflexive item: " + activeItem);
                 activeItem.InteractOn(Tiles.Get("rock"), level, 0, 0, this, attackDir);
 
                 if (!Game.IsMode("creative") && activeItem.IsDepleted())
@@ -806,7 +809,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
                 bool done = false;
 
                 // if the interaction between you and an entity is successful, then return.
-                if (interact(GetInteractionBox(INTERACT_DIST)))
+                if (Interact(GetInteractionBox(INTERACT_DIST)))
                 {
                     return;
                 }

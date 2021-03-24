@@ -191,7 +191,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
 
         public static Tile Get(string name)
         {
-            //System.out.println("Getting from tile list: " + name);
+            //Console.WriteLine("Getting from tile list: " + name);
 
             name = name.ToUpper();
 
@@ -203,7 +203,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
                 Environment.Exit(1);
             }
 
-            //System.out.println("Fetching tile " + name);
+            //Console.WriteLine("Fetching tile " + name);
 
             Tile getting = null;
 
@@ -250,7 +250,7 @@ namespace MinicraftPlusSharp.Levels.Tiles
 
         public static Tile Get(int id)
         {
-            //System.out.println("Requesting tile by id: " + id);
+            //Console.WriteLine("Requesting tile by id: " + id);
             if (id < 0)
             {
                 id += 256;

@@ -10,7 +10,7 @@ namespace MinicraftPlusSharp.Networking
 {
     public interface MinicraftProtocol
     {
-        const int PORT = 4225;
+        public const int PORT = 4225;
 
         void EndConnection();
         bool IsConnected();

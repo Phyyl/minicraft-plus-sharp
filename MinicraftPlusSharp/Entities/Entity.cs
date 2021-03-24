@@ -162,7 +162,7 @@ namespace MinicraftPlusSharp.Entities
         {
             if (xd == 0 && yd == 0) return true; // was not stopped
 
-            bool interact = true;//!Game.isValidClient() || this instanceof ClientTickable;
+            bool interact = true;//!Game.isValidClient() || this is ClientTickable;
 
             // gets the tile coordinate of each direction from the sprite...
             int xto0 = ((x) - this.xr) >> 4; // to the left

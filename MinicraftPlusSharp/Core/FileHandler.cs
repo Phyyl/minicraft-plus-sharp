@@ -18,9 +18,9 @@ namespace MinicraftPlusSharp.Core
         public static readonly int RENAME_COPY = 1;
         public static readonly int SKIP = 2;
 
-        static readonly string OS;
+        public static readonly string OS;
         private static readonly string localGameDir;
-        static readonly string systemGameDir;
+        public static readonly string systemGameDir;
 
         static FileHandler()
         {
@@ -42,11 +42,11 @@ namespace MinicraftPlusSharp.Core
 
             localGameDir = "/" + local;
 
-            //System.out.println("system game dir: " + systemGameDir);
+            //Console.WriteLine("system game dir: " + systemGameDir);
         }
 
 
-        static void DetermineGameDir(string saveDir)
+        public static void DetermineGameDir(string saveDir)
         {
             gameDir = saveDir + localGameDir;
 
@@ -123,7 +123,7 @@ namespace MinicraftPlusSharp.Core
                 }
 
                 string newFile = newFilename;
-                //if (Game.debug) System.out.println("visiting file " + file + "; translating to " + newFile);
+                //if (Game.debug) Console.WriteLine("visiting file " + file + "; translating to " + newFile);
                 try
                 {
                     File.Copy(file, newFile, true);

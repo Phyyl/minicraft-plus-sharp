@@ -48,7 +48,7 @@ namespace MinicraftPlusSharp.Entities.Furniture
 
                 foreach (string line in lines)
                 {
-                    //System.out.println(line);
+                    //Console.WriteLine(line);
                     string[] data = line.Split(",");
 
                     if (!line.StartsWith(":"))

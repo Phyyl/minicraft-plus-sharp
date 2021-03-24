@@ -16,7 +16,7 @@ namespace MinicraftPlusSharp.Core
 {
     public class Game
     {
-        private Game() // can't instantiate the Game class.
+        protected Game() // can't instantiate the Game class.
         {
         }
 
@@ -42,7 +42,7 @@ namespace MinicraftPlusSharp.Core
 		 */
         public static int CUSTOM_PORT = MinicraftProtocol.PORT;
 
-        static Display menu = null, newMenu = null; // the current menu you are on.
+        public static Display menu = null, newMenu = null; // the current menu you are on.
                                                     // Sets the current menu.
         public static void SetMenu(Display display)
         {
@@ -113,9 +113,9 @@ namespace MinicraftPlusSharp.Core
         public static Level[] levels = new Level[6]; // This array stores the different levels.
         public static int currentLevel = 3; // This is the level the player is on. It defaults to 3, the surface.
 
-        static bool gameOver = false; // If the player wins this is set to true.
+        public static bool gameOver = false; // If the player wins this is set to true.
 
-        static bool running = true;
+        public static bool running = true;
 
         public static void Quit()
         {

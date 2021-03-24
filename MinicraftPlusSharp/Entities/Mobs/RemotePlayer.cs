@@ -1,4 +1,5 @@
 ﻿using MinicraftPlusSharp.Core;
+using MinicraftPlusSharp.Core.IO;
 using MinicraftPlusSharp.Entities.Furniture;
 using MinicraftPlusSharp.Gfx;
 using MinicraftPlusSharp.Levels;
@@ -20,23 +21,21 @@ namespace MinicraftPlusSharp.Entities.Mobs
         private static readonly int entityTrackingBuffer = 0;
 
         private string username = "";
-        private readonly IPAddress ipAddress;
-        private readonly int port;
+        private readonly IPEndPoint endPoint;
 
-        public RemotePlayer(Player previous, IPAddress ip, int port)
-            : this(previous, false, ip, port)
+        public RemotePlayer(Player previous, IPEndPoint endPoint)
+            : this(previous, false, endPoint)
         {
         }
 
-        public RemotePlayer(Player previous, bool isMainPlayer, IPAddress ip, int port)
-            : base(previous, (isMainPlayer ? Game.input : new InputHandler()))
+        public RemotePlayer(Player previous, bool isMainPlayer, IPEndPoint endPoint)
+            : base(previous, isMainPlayer ? Game.input : new InputHandler())
         {
-            this.ipAddress = ip;
-            this.port = port;
+            this.endPoint = endPoint;
         }
 
         public RemotePlayer(bool isMainPlayer, RemotePlayer model)
-            : this(model, isMainPlayer, model.ipAddress, model.port)
+            : this(model, isMainPlayer, model.endPoint)
         {
             eid = model.eid;
             SetUsername(model.GetUsername());

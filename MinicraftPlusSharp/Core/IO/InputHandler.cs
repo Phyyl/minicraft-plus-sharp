@@ -302,7 +302,7 @@ namespace MinicraftPlusSharp.Core.IO
                     key = new Key(); //make new key
                     keyboard.Add(keytext, key); //add it to keyboard
 
-                    //if(Game.debug) System.out.println("Added new key: \'" + keytext + "\'"); //log to console that a new key was added to the keyboard
+                    //if(Game.debug) Console.WriteLine("Added new key: \'" + keytext + "\'"); //log to console that a new key was added to the keyboard
                 }
             } // "key" has been set to the appropriate key Object.
 
@@ -341,7 +341,7 @@ namespace MinicraftPlusSharp.Core.IO
                 key = new Key();
             }
 
-            //if(key.clicked && Game.debug) System.out.println("Processed key: " + keytext + " is clicked; tickNum=" + ticks);
+            //if(key.clicked && Game.debug) Console.WriteLine("Processed key: " + keytext + " is clicked; tickNum=" + ticks);
 
             return key; // return the Key object.
         }
@@ -350,7 +350,7 @@ namespace MinicraftPlusSharp.Core.IO
         /*public void pressKey(String keyname, bool pressed) {
             Key key = getPhysKey(keyname);
             key.toggle(pressed);
-            //System.out.println("Key " + keyname + " is clicked: " + getPhysKey(keyname).clicked);
+            //Console.WriteLine("Key " + keyname + " is clicked: " + getPhysKey(keyname).clicked);
         }*/
 
         public List<string> GetAllPressedKeys()
@@ -378,7 +378,7 @@ namespace MinicraftPlusSharp.Core.IO
             }
             else
             {
-                //System.out.println("UNKNOWN KEYBOARD KEY: " + keytext); // it's okay really; was just checking
+                //Console.WriteLine("UNKNOWN KEYBOARD KEY: " + keytext); // it's okay really; was just checking
                 return new Key(); //won't matter where I'm calling it.
             }
         }
@@ -400,9 +400,9 @@ namespace MinicraftPlusSharp.Core.IO
 
             keytext = keytext.ToUpper();
 
-            //System.out.println("Interpreted key press: " + keytext);
+            //Console.WriteLine("Interpreted key press: " + keytext);
 
-            //System.out.println("Toggling " + keytext + " key (keycode " + keycode + ") to "+pressed+".");
+            //Console.WriteLine("Toggling " + keytext + " key (keycode " + keycode + ") to "+pressed+".");
             if (pressed && keyToChange != null && !IsMod(keytext))
             {
                 keymap.Add(keyToChange, (overwrite ? "" : keymap[keyToChange] + "|") + GetCurModifiers() + keytext);

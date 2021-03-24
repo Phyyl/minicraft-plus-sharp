@@ -168,7 +168,7 @@ namespace MinicraftPlusSharp.Items
          */
         public void RemoveItem(Item i)
         {
-            //if (Game.debug) System.out.println("original item: " + i);
+            //if (Game.debug) Console.WriteLine("original item: " + i);
             if (i is StackableItem stackable)
             {
                 RemoveItem(i.Clone(), stackable.count);

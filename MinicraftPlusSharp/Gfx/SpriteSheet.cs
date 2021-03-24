@@ -5,6 +5,9 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MinicraftPlusSharp.Gfx
 {
@@ -15,14 +18,15 @@ namespace MinicraftPlusSharp.Gfx
         public int width, height; // width and height of the sprite sheet
         public int[] pixels; // integer array of the image's pixels
 
-        public unsafe SpriteSheet(Bitmap image)
+        public unsafe SpriteSheet(BitmapImage image)
         {
             //sets width and height to that of the image
-            width = image.Width;
-            height = image.Height;
+            width = image.PixelWidth;
+            height = image.PixelHeight;
 
-            BitmapData data = image.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Span<Color> colors = new(data.Scan0.ToPointer(), width * height * 4);
+            Color[] colors = new Color[width * height * 4];
+
+            image.CopyPixels(new Int32Rect(0, 0, width, height), colors, width * 4, 0);
             pixels = new int[colors.Length];
 
             for (int i = 0; i < pixels.Length; i++)
@@ -39,6 +43,10 @@ namespace MinicraftPlusSharp.Gfx
                 pixels[i] = (transparent << 24) + red + green + blue;
             }
         }
-    }
 
+        struct Color
+        {
+            public byte A, R, G, B;
+        }
+    }
 }

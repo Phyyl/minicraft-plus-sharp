@@ -55,7 +55,7 @@ namespace MinicraftPlusSharp.Items
         public static Item Get(string name, bool allowNull)
         {
             name = name.ToUpper();
-            //System.out.println("fetching name: \"" + name + "\"");
+            //Console.WriteLine("fetching name: \"" + name + "\"");
             int data = 1;
             bool hadUnderscore = false;
             if (name.Contains("_"))

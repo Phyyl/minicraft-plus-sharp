@@ -154,7 +154,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             return moved;
         }
 
-        public void UpdatePlayers(int oldxt, int oldyt)
+        public virtual void UpdatePlayers(int oldxt, int oldyt)
         {
             if (!Game.IsValidServer())
             {
@@ -202,7 +202,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             }
         }
 
-        private bool IsWooling()
+        private virtual bool IsWooling()
         { // supposed to walk at half speed on wool
             if (level == null)
             {
@@ -217,7 +217,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * Checks if this Mob is currently on a light tile; if so, the mob sprite is brightened.
          * @return true if the mob is on a light tile, false if not.
          */
-        public bool IsLight()
+        public virtual bool IsLight()
         {
             return level == null ? false : level.IsLight(x >> 4, y >> 4);
         }
@@ -226,7 +226,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * Checks if the mob is swimming (standing on a liquid tile).
          * @return true if the mob is swimming, false if not.
          */
-        public bool IsSwimming()
+        public virtual bool IsSwimming()
         {
             if (level == null)
             {
@@ -244,7 +244,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * @param y The x position of the mob
          * @param damage The amount of damage to hurt the mob with
          */
-        public void Hurt(Tile tile, int x, int y, int damage) // Hurt the mob, when the source of damage is a tile
+        public virtual void Hurt(Tile tile, int x, int y, int damage) // Hurt the mob, when the source of damage is a tile
         {
             Direction attackDir = Direction.GetDirection(dir.GetDir() ^ 1); // Set attackDir to our own direction, inverted. XORing it with 1 flips the rightmost bit in the variable, this effectively adds one when even, and subtracts one when odd.
             if (!(tile == Tiles.Get("lava") && this is Player player && player.potioneffects.ContainsKey(PotionType.Lava)))
@@ -258,7 +258,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * @param mob The mob that hurt this mob
          * @param damage The amount of damage to hurt the mob with
          */
-        public void Hurt(Mob mob, int damage)
+        public virtual void Hurt(Mob mob, int damage)
         {
             Hurt(mob, damage, GetAttackDir(mob, this));
         }
@@ -269,7 +269,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
          * @param damage The amount of damage to hurt the mob with
          * @param attackDir The direction this mob was attacked from
          */
-        public void Hurt(Mob mob, int damage, Direction attackDir)
+        public virtual void Hurt(Mob mob, int damage, Direction attackDir)
         { // Hurt the mob, when the source is another mob
             if (mob is Player && Game.IsMode("creative") && mob != this)
             {
@@ -282,7 +282,7 @@ namespace MinicraftPlusSharp.Entities.Mobs
             }
         }
 
-        public void Hurt(Tnt tnt, int dmg)
+        public virtual void Hurt(Tnt tnt, int dmg)
         {
             DoHurt(dmg, GetAttackDir(tnt, this));
         }

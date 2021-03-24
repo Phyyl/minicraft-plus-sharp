@@ -335,15 +335,9 @@ namespace MinicraftPlusSharp.Core.IO
                     }
                     else
                     {
-                        Config configOption = null;
-
-                        if (!Config.TryGetValue(args[0].ToUpper(Localization.GetSelectedLocale())))
+                        if (!Config.TryGetValue(args[0].ToUpper(Localization.GetSelectedLocale()), out Config configOption))
                         {
                             Console.WriteLine("\"" + args[0] + "\" is not a valid config option. run \"config\" for a list of the available config options.");
-                        }
-
-                        if (configOption == null)
-                        {
                             return;
                         }
 
@@ -783,8 +777,6 @@ namespace MinicraftPlusSharp.Core.IO
 
                 int lastIdx = -1;
 
-                string removed;
-
                 for (int i = 0; i < parsed.Count; i++)
                 {
                     if (parsed[i].Contains("\""))
@@ -793,9 +785,7 @@ namespace MinicraftPlusSharp.Core.IO
                         { // closing a quoted String
                             while (i > lastIdx)
                             { // join the words together
-                                removed = parsed[lastIdx + 1];
-                                parsed.RemoveAt(lastIdx + 1);
-                                parsed[lastIdx] = parsed[lastIdx] + " " + removed;
+                                parsed[lastIdx] = parsed[lastIdx] + " " + parsed.RemoveAtGet(lastIdx + 1);
                                 i--;
                             }
 
@@ -812,10 +802,7 @@ namespace MinicraftPlusSharp.Core.IO
                 }
                 //if (Game.debug) Console.WriteLine("Parsed command: " + parsed.toString());
 
-                removed = parsed[0];
-                parsed.RemoveAt(0);
-
-                Command cmd = GetCommandByName(removed); // will print its own error message if not found.
+                Command cmd = GetCommandByName(parsed.RemoveAtGet(0)); // will print its own error message if not found.
 
                 if (cmd == null)
                 {
